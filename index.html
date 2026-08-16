@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Ekaterina Guzman</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ink: #1a1a2e;
+    --mid: #4a4a6a;
+    --light: #8888aa;
+    --gold: #b8965a;
+    --gold-light: #f5eed8;
+    --teal: #1a6b6b;
+    --teal-light: #e6f4f4;
+    --blue: #1a3a6b;
+    --blue-light: #e8eef8;
+    --rose: #8b2252;
+    --rose-light: #f7eaf2;
+    --green: #1a5c3a;
+    --green-light: #e6f4ec;
+    --border: #e4e2dc;
+    --bg: #faf9f6;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+
+  /* HEADER */
+  .header { background: var(--ink); color: #fff; padding: 64px 0 56px; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: rgba(184,150,90,0.12); top: -200px; right: -150px; }
+  .header::after { content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%; background: rgba(184,150,90,0.08); bottom: -120px; left: -80px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  .header-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .header-tag { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 500; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 400; line-height: 1.1; margin-bottom: 6px; color: #fff; }
+  .header h1 em { color: var(--gold); font-style: italic; }
+  .header-titles { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge { display: inline-block; font-size: 12px; padding: 5px 14px; border-radius: 20px; font-weight: 500; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.07); }
+  .badge-gold { background: rgba(184,150,90,0.2); border-color: rgba(184,150,90,0.5); color: #e8c97a; }
+  .header-stats { display: flex; flex-direction: column; gap: 20px; text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); line-height: 1; font-weight: 600; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+
+  /* NAV */
+  .nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { display: flex; gap: 0; max-width: 900px; margin: 0 auto; padding: 0 32px; overflow-x: auto; }
+  .nav a { display: block; padding: 16px 20px; font-size: 13px; font-weight: 500; color: var(--mid); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
+
+  /* SECTIONS */
+  .section { padding: 56px 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+  .section-header { margin-bottom: 32px; }
+  .section-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 8px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--ink); line-height: 1.2; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
+  .about-lead { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 20px; font-weight: 300; }
+  .about-lead strong { color: var(--ink); font-weight: 600; }
+  .competencies { display: flex; flex-direction: column; gap: 12px; }
+  .comp-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; border-left: 3px solid var(--gold); }
+  .comp-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .comp-desc { font-size: 12px; color: var(--light); line-height: 1.5; }
+
+  /* CREDENTIALS */
+  .cred-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .cred-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start; }
+  .cred-icon { font-size: 26px; flex-shrink: 0; }
+  .cred-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .cred-desc { font-size: 12px; color: var(--light); line-height: 1.55; }
+
+  /* PUBLICATIONS */
+  .pubs-grid { display: flex; flex-direction: column; gap: 12px; }
+  .pub-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; display: grid; grid-template-columns: 1fr auto; gap: 12px 20px; align-items: start; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s; }
+  .pub-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-color: var(--gold); }
+  .pub-title { font-size: 15px; font-weight: 500; color: var(--ink); line-height: 1.4; margin-bottom: 6px; }
+  .pub-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .pub-source { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 12px; background: var(--blue-light); color: var(--blue); }
+  .pub-source.sport { background: var(--green-light); color: var(--green); }
+  .pub-source.psych { background: var(--rose-light); color: var(--rose); }
+  .pub-source.seo { background: var(--teal-light); color: var(--teal); }
+  .pub-date { font-size: 11px; color: var(--light); }
+  .pub-role { font-size: 11px; color: var(--light); font-style: italic; }
+  .pub-citation { font-size: 11px; color: var(--gold); font-weight: 500; white-space: nowrap; text-align: right; padding-top: 2px; }
+  .pub-arrow { color: var(--light); font-size: 16px; display: block; margin-top: 4px; text-align: right; }
+
+  .cat-header { display: flex; align-items: center; gap: 12px; margin: 32px 0 14px; }
+  .cat-header:first-child { margin-top: 0; }
+  .cat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .cat-name { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); }
+  .cat-count { font-size: 12px; color: var(--light); margin-left: auto; }
+
+  /* MEDIA */
+  .logos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .logo-chip { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-align: center; font-size: 13px; font-weight: 600; color: var(--mid); }
+
+  /* EXPERTISE */
+  .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .exp-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .exp-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+  .exp-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .exp-desc { font-size: 12px; color: var(--light); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-box { background: var(--ink); border-radius: 16px; padding: 40px; color: #fff; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .contact-box h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 8px; color: #fff; }
+  .contact-box p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 10px 18px; font-size: 13px; font-weight: 500; color: #fff; text-decoration: none; white-space: nowrap; transition: background 0.2s; }
+  .contact-link:hover { background: rgba(184,150,90,0.2); }
+  .contact-link .icon { font-size: 16px; }
+
+  /* FOOTER */
+  .footer { background: var(--white); border-top: 1px solid var(--border); padding: 24px 0; text-align: center; font-size: 12px; color: var(--light); }
+
+  /* QUOTE */
+  .pull-quote { border-left: 3px solid var(--gold); padding: 16px 20px; margin: 24px 0; background: var(--gold-light); border-radius: 0 10px 10px 0; }
+  .pull-quote p { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--ink); line-height: 1.6; }
+
+  @media (max-width: 660px) {
+    .header h1 { font-size: 32px; }
+    .header-grid, .about-grid, .expertise-grid, .cred-grid { grid-template-columns: 1fr; }
+    .header-stats { flex-direction: row; justify-content: space-around; }
+    .contact-box { grid-template-columns: 1fr; }
+    .pub-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header-grid">
+      <div>
+        <div class="header-tag">Portfolio · 2026</div>
+        <h1>Ekaterina<br><em>Guzman</em></h1>
+        <div class="header-titles">
+          <span class="badge badge-gold">Medical Copywriter</span>
+          <span class="badge badge-gold">Medical Journalist</span>
+          <span class="badge">Physician · Nutritionist</span>
+          <span class="badge">Preventive Medicine</span>
+          <span class="badge">Food Safety Auditor ISO 22000</span>
+        </div>
+      </div>
+      <div class="header-stats">
+        <div>
+          <div class="stat-num">29+</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div>
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Media outlets</div>
+        </div>
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">Years in content</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#about">About</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#publications">Publications</a>
+    <a href="#media">Media</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Profile</div>
+      <div class="section-title">Medicine · Journalism · Science</div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="about-lead">
+          I am a physician specialising in <strong>preventive medicine and nutritiology</strong>, a certified food technologist, and a food safety auditor (ISO 22000 / FSSC 22000). Since 2021 I have worked at the intersection of medicine and media — writing for national publications, producing expert commentary, and developing content strategies for health professionals and brands.
+        </p>
+        <p class="about-lead">
+          All my content is grounded in <strong>evidence-based medicine</strong> — I source from PubMed, Cochrane, The Lancet, and peer-reviewed clinical guidelines. I write under my own name and as a ghostwriter for other specialists: psychologists, sports medicine physicians, and nutritionists. I currently serve as a physician-methodologist and Head of Communications at <strong>the Centre for Public Health and Medical Prevention, Krasnodar Region</strong>, alongside independent copywriting and journalism practice.
+        </p>
+        <div class="pull-quote">
+          <p>"I bring clinical accuracy and journalistic readability to every piece — because health content that isn't read helps no one."</p>
+        </div>
+      </div>
+      <div class="competencies">
+        <div class="comp-item">
+          <div class="comp-title">Medical Copywriting</div>
+          <div class="comp-desc">SEO articles, expert commentary, native content for national media outlets</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title">Medical Journalism</div>
+          <div class="comp-desc">News features, analysis, expert columns, interview-based materials</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title">Content Strategy</div>
+          <div class="comp-desc">Building media presence for physicians and psychologists in federal press</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title">Scientific Editing</div>
+          <div class="comp-desc">Fact-checking medical claims, sourcing clinical studies, editorial review</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title">Ghostwriting</div>
+          <div class="comp-desc">Full-service content under client's name — voice-matched, medically accurate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="section" id="credentials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Education & Certification</div>
+      <div class="section-title">Professional Background</div>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">🩺</div>
+        <div>
+          <div class="cred-title">Physician — Preventive Medicine</div>
+          <div class="cred-desc">Specialisation in public health, disease prevention, and health promotion. Employed at the Centre for Public Health and Medical Prevention, Krasnodar Region (GBUZ TsOZiMP).</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🥗</div>
+        <div>
+          <div class="cred-title">Nutritionist (Nutritiology)</div>
+          <div class="cred-desc">Clinical nutrition, eating behaviour therapy, individual dietary programming. Academic background in food hygiene with publications and teaching experience.</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🏭</div>
+        <div>
+          <div class="cred-title">Food Technologist & Safety Auditor</div>
+          <div class="cred-desc">Certified in ISO 22000 / FSSC 22000. Conducts food safety audits for food manufacturing enterprises; experience in HACCP system implementation.</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">✍️</div>
+        <div>
+          <div class="cred-title">Medical Copywriter — since 2021</div>
+          <div class="cred-desc">5+ years producing evidence-based health content for national Russian media, healthcare brands, and individual medical specialists across psychology, sports medicine, and nutrition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Selected Work</div>
+      <div class="section-title">Publications</div>
+    </div>
+    <div class="pubs-grid">
+
+      <!-- PSYCHOLOGY -->
+      <div class="cat-header">
+        <div class="cat-dot" style="background:#8b2252"></div>
+        <div class="cat-name">Psychology · Ghostwritten for psychologist Nika Bolzan</div>
+        <div class="cat-count">17 articles</div>
+      </div>
+
+      <a class="pub-card" href="https://tvkrasnodar.ru/obshchestvo/2026/04/29/psikholog-bolzan-rasskazala-kak-raspoznat-stalkera-/" target="_blank">
+        <div>
+          <div class="pub-title">Why Women Feel Sorry for Stalkers — and How It Ends</div>
+          <div class="pub-meta">
+            <span class="pub-source psych">TV Krasnodar</span>
+            <span class="pub-date">29 Apr 2026</span>
+          </div>
+        </div>
+        <div>
+          <div class="pub-citation">↗ Krasnodarskie Izvestia<br>↗ KUBAN.BFM.ru</div>
+          <span class="pub-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="pub-card" href="https://tvkrasnodar.ru/obshchestvo/2026/04/30/psikholog-bolzan-obyasnila-pochemu-vpr-tak-silno-trevozhat-detey/" target="_blank">
+        <div>
+          <div class="pub-title">National School Tests Are Here: How to Help Your Child Handle Stress Without Losing Motivation</div>
+          <div class="pub-meta">
+            <span class="pub-source psych">TV Krasnodar</span>
+            <span class="pub-date">30 Apr 2026</span>
+          </div>
+        </div>
+        <div>
+          <div class="pub-citation">↗ Komsomolskaya Pravda Kuban</div>
+          <span class="pub-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="pub-card" href="https://www.gazeta.ru/twz/samorazvitie-kariera/audialy-vizualy-kinestetiki-kak-opredelit-svoi-tip-vospriyatiya-informacii-i-nuzhno-li-eto-delat.htm" target="_blank">
+        <div>
+          <div class="pub-title">Auditory, Visual, Kinaesthetic: Do People Actually Have a Dominant Perception Channel?</div>
+          <div class="pub-meta">
+            <span class="pub-source">Gazeta.ru</span>
+            <span class="pub-date">3 Jun 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://ria.ru/20260515/skuf-2092756864.html" target="_blank">
+        <div>
+          <div class="pub-title">"Skufy": Why Men Over 30 Stop Trying</div>
+          <div class="pub-meta">
+            <span class="pub-source">RIA Novosti</span>
+            <span class="pub-date">15 May 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://tvkrasnodar.ru/obshchestvo/2026/06/08/psikholog-bolzan-rasskazala-kogda-dofaminovaya-yama-mozhet-byt-opasnym-signalom/" target="_blank">
+        <div>
+          <div class="pub-title">The Dopamine Pit: When It Becomes a Dangerous Signal</div>
+          <div class="pub-meta">
+            <span class="pub-source psych">TV Krasnodar</span>
+            <span class="pub-date">8 Jun 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://journal.sovcombank.ru/zhizn/perfekcionizm-s-dengami" target="_blank">
+        <div>
+          <div class="pub-title">Perfectionism and Money</div>
+          <div class="pub-meta">
+            <span class="pub-source">Sovcombank Blog</span>
+            <span class="pub-date">23 Jun 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.psychologies.ru/articles/na-muzhchinu-vyzvali-policiyu-za-to-chto-on-zashel-v-zhenskii-tualet-pochemu-internet-vstal-na-ego-storonu/" target="_blank">
+        <div>
+          <div class="pub-title">A Father Was Reported to Police for Entering a Women's Restroom with His Daughters — Why the Internet Sided with Him</div>
+          <div class="pub-meta">
+            <span class="pub-source psych">Psychologies Russia</span>
+            <span class="pub-date">22 Jun 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.maximonline.ru/lifestyle/kak-vesti-semeinyi-byudzhet-i-ne-prevratit-otnosheniya-v-bukhgalteriyu-id7103841/" target="_blank">
+        <div>
+          <div class="pub-title">How to Manage a Family Budget Without Turning Your Relationship into Accounting</div>
+          <div class="pub-meta">
+            <span class="pub-source">MAXIM Russia</span>
+            <span class="pub-date">26 Jun 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.mk-hakasia.ru/social/2026/07/01/khochu-stat-uspeshnym-togda-zabudte-pro-iq-i-prokachivayte-emocionalnyy-intellekt.html" target="_blank">
+        <div>
+          <div class="pub-title">Why EQ Matters More Than IQ in Personal and Professional Life</div>
+          <div class="pub-meta">
+            <span class="pub-source">MK Khakassia</span>
+            <span class="pub-date">28 Jun 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.mk-novgorod.ru/social/2026/07/03/priroda-lechit-ili-kak-pomoch-podruge-posle-razvoda-emocionalno.html" target="_blank">
+        <div>
+          <div class="pub-title">How to Support a Friend Emotionally After Divorce</div>
+          <div class="pub-meta">
+            <span class="pub-source">MK Saint Petersburg</span>
+            <span class="pub-date">3 Jul 2026</span>
+            <span class="pub-source psych">Mensora.ru</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://runews24.ru/society/03/07/2026/krizis-tryox-let-kak-revolyucziya-pochemu-milyij-angel-vdrug-prevrashhaetsya-v-domashnego-tirana-krichashhego-ya-sam" target="_blank">
+        <div>
+          <div class="pub-title">The Three-Year Crisis as Revolution: Why Your Sweet Child Suddenly Becomes a Tiny Tyrant</div>
+          <div class="pub-meta">
+            <span class="pub-source">RuNews24</span>
+            <span class="pub-date">7 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.mk-hakasia.ru/social/2026/07/05/ne-kleyte-oboi-na-mokruyu-stenu-psikholog-sovetuet-ne-pytatsya-povysit-samoocenku-affirmaciyami.html" target="_blank">
+        <div>
+          <div class="pub-title">How to Actually Improve Your Self-Esteem (Hint: Affirmations Alone Won't Do It)</div>
+          <div class="pub-meta">
+            <span class="pub-source">MK Khakassia</span>
+            <span class="pub-date">5 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.mk-kaliningrad.ru/social/2026/07/03/odin-kommentariy-silnee-desyati-komplimentov-kak-i-pochemu-mozg-obmanyvaet-nas.html" target="_blank">
+        <div>
+          <div class="pub-title">How Our Brain Deceives Us Every Day: The Most Common Cognitive Biases</div>
+          <div class="pub-meta">
+            <span class="pub-source">MK Kaliningrad</span>
+            <span class="pub-date">3 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.mk-novgorod.ru/social/2026/07/11/otpravlyat-nelzya-ostavit-kak-postupit-esli-rebenok-ne-khochet-ekhat-v-detskiy-lager.html" target="_blank">
+        <div>
+          <div class="pub-title">Your Child Refuses to Go to Summer Camp — What Should You Do?</div>
+          <div class="pub-meta">
+            <span class="pub-source">MK Veliky Novgorod</span>
+            <span class="pub-date">11 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://materinstvo.ru/poleznoe/18010" target="_blank">
+        <div>
+          <div class="pub-title">10 Non-Obvious Ways to Keep Kids Busy This Summer — Without Screens</div>
+          <div class="pub-meta">
+            <span class="pub-source psych">Materinstvo.ru</span>
+            <span class="pub-date">16 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://ria.ru/spravochnaya-informatsiya/tipy-privyazannosti-v-otnosheniyakh/" target="_blank">
+        <div>
+          <div class="pub-title">Attachment Styles: Secure, Anxious, and Avoidant — How Each One Shows Up</div>
+          <div class="pub-meta">
+            <span class="pub-source">RIA Novosti</span>
+            <span class="pub-date">24 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://yavmode.ru/kak-aromaty-stanovyatsya-chastyu-obraza-psixologiya-olfaktornogo-stilya-i-kollaboracii-mody-s-parfyumerami/" target="_blank">
+        <div>
+          <div class="pub-title">How Scents Become Part of Your Identity: The Psychology of Olfactory Style</div>
+          <div class="pub-meta">
+            <span class="pub-source psych">Yavmode — Luxe in Russia</span>
+            <span class="pub-date">27 Jul 2026</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <!-- SPORTS MEDICINE -->
+      <div class="cat-header">
+        <div class="cat-dot" style="background:#1a5c3a"></div>
+        <div class="cat-name">Sports Medicine · Sport-Express TROPS</div>
+        <div class="cat-count">10 articles</div>
+      </div>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/blog/reviews/kak-roditeli-stanovyatsya-psihologicheskoy-oporoy-sportsmena-istorii-chempionov-2446495/" target="_blank">
+        <div>
+          <div class="pub-title">Behind Every Champion: How Messi's, Ovechkin's and Ronaldo's Parents Helped Them Succeed</div>
+          <div class="pub-meta"><span class="pub-source sport">Sport-Express</span></div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/training/reviews/kak-spravitsya-s-proigryshem-otvechaet-sportivnyy-psiholog-2441410/" target="_blank">
+        <div>
+          <div class="pub-title">The Psychology of Losing: How to Cope When You've Been a Leader for Years</div>
+          <div class="pub-meta"><span class="pub-source sport">Sport-Express</span></div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/nutrition/reviews/chto-pit-vo-vremya-dlitelnoy-trenirovki-kakie-napitki-isklyuchit-kakie-ispolzovat-2444307/" target="_blank">
+        <div>
+          <div class="pub-title">Water vs Isotonic Drink: What to Drink During a Long Workout</div>
+          <div class="pub-meta">
+            <span class="pub-source sport">Sport-Express</span>
+            <span class="pub-role">sports physician Dr. Surikov</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/disciplines/news/vrach-sportivnoy-mediciny-nazval-prichinu-boley-v-spine-vo-vremya-bega-2437715/" target="_blank">
+        <div>
+          <div class="pub-title">Sports Physician Explains the Real Reason Your Back Hurts While Running</div>
+          <div class="pub-meta"><span class="pub-source sport">Sport-Express</span></div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/training/reviews/kak-nachat-begat-s-nulya-bezopasnaya-programma-dlya-novichkov-2026-2437378/" target="_blank">
+        <div>
+          <div class="pub-title">How to Start Running from Scratch: A Complete Beginner's Guide for 2026</div>
+          <div class="pub-meta">
+            <span class="pub-source sport">Sport-Express</span>
+            <span class="pub-role">Dr. Surikov</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/training/reviews/pochemu-posle-bega-bolit-spina-prichiny-boli-v-poyasnitse-i-kak-ee-izbezhat-2435794/" target="_blank">
+        <div>
+          <div class="pub-title">Why Your Lower Back Hurts After Running: 5 Causes Every Runner Should Know</div>
+          <div class="pub-meta">
+            <span class="pub-source sport">Sport-Express</span>
+            <span class="pub-role">Dr. Surikov & Dr. Fedosova</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/zozh/fitness/reviews/vosstanovitelnyy-beg-chem-polezen-komu-nuzhen-kakoy-dolzhen-byt-puls-i-skolko-nuzhno-probezhat-2432142/" target="_blank">
+        <div>
+          <div class="pub-title">Recovery Running: Benefits, Who Needs It, and How to Find the Right Pace</div>
+          <div class="pub-meta">
+            <span class="pub-source sport">Sport-Express</span>
+            <span class="pub-role">Dr. Surikov</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/training/news/vrach-lfk-rasskazala-komu-protivopokazany-trenirovki-po-plavaniyu-2438306/" target="_blank">
+        <div>
+          <div class="pub-title">Rehabilitation Physician Explains Who Should Avoid Swimming Training</div>
+          <div class="pub-meta"><span class="pub-source sport">Sport-Express</span></div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/trops/training/reviews/polza-plavaniya-v-basseyne-dlya-zhenschin-komu-podhodit-protivopokazaniya-2435176/" target="_blank">
+        <div>
+          <div class="pub-title">Swimming Benefits for Women: A Comprehensive Guide to Health Effects</div>
+          <div class="pub-meta">
+            <span class="pub-source sport">Sport-Express</span>
+            <span class="pub-role">Dr. Fedosova</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://www.sport-express.ru/zozh/fitness/reviews/kak-beg-vliyaet-na-koleni-vred-marafona-dlya-sustavov-pravda-ili-mif-2422969/" target="_blank">
+        <div>
+          <div class="pub-title">Do Marathons Really "Destroy" Your Knees? A Physician and Coach Weigh In</div>
+          <div class="pub-meta">
+            <span class="pub-source sport">Sport-Express</span>
+            <span class="pub-role">Dr. Fedosova</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <!-- SEO -->
+      <div class="cat-header">
+        <div class="cat-dot" style="background:#1a6b6b"></div>
+        <div class="cat-name">SEO Content · Public Health</div>
+        <div class="cat-count">2 articles</div>
+      </div>
+
+      <a class="pub-card" href="https://med-prof.ru/o-tsentre/novosti/tsentry-zdorovya-kubani-pomogayut-sokhranit-zdorove-i-predupredit-razvitie-zabolevaniy/" target="_blank">
+        <div>
+          <div class="pub-title">Kuban Health Centres: Helping People Stay Well and Prevent Disease</div>
+          <div class="pub-meta">
+            <span class="pub-source seo">med-prof.ru</span>
+            <span class="pub-role">GBUZ TsOZiMP Krasnodar Region</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+      <a class="pub-card" href="https://med-prof.ru/o-tsentre/novosti/profilaktika-allergicheskikh-zabolevaniy-kak-predupredit-allergiyu/" target="_blank">
+        <div>
+          <div class="pub-title">Allergy Prevention: How to Reduce the Risk Before Symptoms Begin</div>
+          <div class="pub-meta">
+            <span class="pub-source seo">med-prof.ru</span>
+            <span class="pub-role">GBUZ TsOZiMP Krasnodar Region</span>
+          </div>
+        </div>
+        <div><span class="pub-arrow">→</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section class="section" id="media">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Media Presence</div>
+      <div class="section-title">National & Regional Outlets</div>
+    </div>
+    <div class="logos-grid">
+      <div class="logo-chip">RIA Novosti</div>
+      <div class="logo-chip">Gazeta.ru</div>
+      <div class="logo-chip">Sport-Express</div>
+      <div class="logo-chip">Psychologies RU</div>
+      <div class="logo-chip">MAXIM Russia</div>
+      <div class="logo-chip">Sovcombank Blog</div>
+      <div class="logo-chip">Materinstvo.ru</div>
+      <div class="logo-chip">RuNews24</div>
+      <div class="logo-chip">Yavmode</div>
+      <div class="logo-chip">MK Khakassia</div>
+      <div class="logo-chip">MK Kaliningrad</div>
+      <div class="logo-chip">MK Novgorod</div>
+      <div class="logo-chip">MK Saint Petersburg</div>
+      <div class="logo-chip">TV Krasnodar</div>
+      <div class="logo-chip">med-prof.ru</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="section" id="expertise">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Topic Areas</div>
+      <div class="section-title">Where I Work Best</div>
+    </div>
+    <div class="expertise-grid">
+      <div class="exp-card">
+        <span class="exp-icon">🥗</span>
+        <div class="exp-title">Nutrition & Dietetics</div>
+        <div class="exp-desc">Evidence-based content on diets, nutrients, eating behaviour, weight management, and clinical nutrition</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-icon">🧠</span>
+        <div class="exp-title">Psychology & Behaviour</div>
+        <div class="exp-desc">Cognitive biases, attachment theory, child psychology, relationships, mental health</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-icon">🏃</span>
+        <div class="exp-title">Sports Medicine</div>
+        <div class="exp-desc">Running, swimming, injury prevention, recovery protocols, physical rehabilitation</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-icon">🛡</span>
+        <div class="exp-title">Preventive Medicine</div>
+        <div class="exp-desc">Public health, chronic disease prevention, health promotion campaigns</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-icon">🔬</span>
+        <div class="exp-title">Food Safety</div>
+        <div class="exp-desc">ISO 22000 / FSSC 22000, HACCP, food hygiene, food technology</div>
+      </div>
+      <div class="exp-card">
+        <span class="exp-icon">📋</span>
+        <div class="exp-title">Regulatory & Clinical Writing</div>
+        <div class="exp-desc">SmPC, patient leaflets, CTD/eCTD dossier materials, clinical documentation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div>
+        <h3>Ekaterina Guzman</h3>
+        <p>Medical Copywriter · Medical Journalist<br>
+        Physician-Nutritionist · Preventive Medicine Specialist<br>
+        Centre for Public Health and Medical Prevention, Krasnodar Region</p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="https://t.me/Dr_Ekaterina_Alexandrovna" target="_blank">
+          <span class="icon">✈️</span> @Dr_Ekaterina_Alexandrovna
+        </a>
+        <a class="contact-link" href="https://vk.ru/id708715884" target="_blank">
+          <span class="icon">💬</span> VKontakte
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    © 2026 Ekaterina Guzman · Medical Copywriter & Journalist
+  </div>
+</footer>
+
+</body>
+</html>
